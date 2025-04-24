@@ -1,6 +1,8 @@
 from flask import Flask, request
 from EmotionDetection.emotion_detection import emotion_detector
 
+
+
 app = Flask(__name__)
 
 @app.route("/emotionDetector", methods=["GET"])
@@ -24,6 +26,11 @@ def emotion_detection_endpoint():
                 f"The dominant emotion is {result['dominant_emotion']}.")
 
     return response, 200
+
+@app.route("/")
+def index():
+    return "Server is running. Use /emotionDetector?text=your_text"
+
 
 if __name__ == "__main__":
     app.run(host='localhost', port=5000)
